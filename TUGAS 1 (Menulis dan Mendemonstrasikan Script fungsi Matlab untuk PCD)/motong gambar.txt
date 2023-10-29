@@ -1,7 +1,0 @@
-%memotong gambar menjadi 100 x 100
-%import gambar 1
-gambar1 = imread('citramentah1.png')
-%potong gambar
-gambar1 = gambar1(50:100,50:100,:)
-%menampilkan gambar yang sudah di potong
-imshow(gambar1)

@@ -1,9 +1,0 @@
-function G=gamma(gbr,c,y) %Deklarasi fungsi
-G1=c*double(gbr).^y; %Rumus
-maks=max(max(G1)); %untuk menghasilkan nilai maximum
-mins=min(min(G1)); %untuk menghasilkan nilai minimum
-range=maks-mins;
-G2=(G1-mins)./range;
-G=255*G2;
-G=uint8(G);
-imshow(G); %Menampilkan gambar

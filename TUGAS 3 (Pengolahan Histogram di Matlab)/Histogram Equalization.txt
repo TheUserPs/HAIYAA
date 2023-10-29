@@ -1,0 +1,32 @@
+%HISTOGRAM EQUALIZATION
+%fungsi untuk mendapatkan histogram gambar A dengan range 0-255
+function B=Hist_Equalization(A)
+%mendapatkan histogram dari citra A
+H=imhist(A);
+[n1,n2]=size(H);
+[n3,n4]=size(A);
+%mendapatkan probabilitas dari p untuk gray lvl 0-255
+p=H/(n3*n4);
+%s adalah fungsi transformasi T(r) sama dengan jumlah P 0 dan k 0-255
+s=zeros(1,256);
+s=cumsum(p);
+%untuk mendapatkan nilai gray level dengan cara nilai S untuk k 0-255
+%dikalikan dengan nilai gray level antara 0- L-1
+r=round(s*(n1-1));
+A=double(A);
+B=zeros(n3,n4);
+for i=1:n3
+for j=1:n4
+x=A(i,j)+1;
+B(i,j)=r(x);
+end
+end
+B=uint8(B);
+%figure,imshow(B);
+figure;
+subplot(1, 2, 1);
+imshow(uint8(A));
+title('Sebelum');
+subplot(1, 2, 2);
+imshow(B);
+title('Setelah');

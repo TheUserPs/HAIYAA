@@ -1,0 +1,13 @@
+function B = gaussianFilter(ingambar, sigma)
+% Hitung ukuran kernel (disarankan ganjil)
+kernelSize = 2 * ceil(3 * sigma) + 1;
+% Buat kernel Gaussian
+kernel = zeros(kernelSize);
+center = floor(kernelSize/2) + 1;
+[X, Y] = meshgrid(1:kernelSize, 1:kernelSize);
+kernel = exp(-((X-center).^2 + (Y-center).^2) / (2*sigma^2));
+% Normalisasi kernel
+kernel = kernel / sum(kernel(:));
+% Lakukan konvolusi
+B = conv2(ingambar, kernel, 'same');
+end

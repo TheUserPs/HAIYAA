@@ -1,0 +1,31 @@
+% Input gambar
+gambar = imread('citramentah2.png');
+% Konversi ke grayscale
+if size(gambar, 3) == 3
+gambar = rgb2gray(gambar);
+end
+% Konversi citra ke tipe double
+gambar = double(gambar);
+% Tentukan kernel Laplacian untuk arah horizontal, vertikal, dan diagonal
+kernel_horizontal = [1, 2, 1; 0, 0, 0; -1, -2, -1];
+kernel_vertical = [1, 0, -1; 2, 0, -2; 1, 0, -1];
+kernel_diagonal_1 = [2, 1, 0; 1, 0, -1; 0, -1, -2];
+kernel_diagonal_2 = [0, 1, 2; -1, 0, 1; -2, -1, 0];
+% Terapkan filter Laplacian untuk arah horizontal
+output_horizontal = conv2(gambar, kernel_horizontal, 'same');
+% Terapkan filter Laplacian untuk arah vertikal
+output_vertical = conv2(gambar, kernel_vertical, 'same');
+% Terapkan filter Laplacian untuk arah diagonal 1
+output_diagonal_1 = conv2(gambar, kernel_diagonal_1, 'same');
+% Terapkan filter Laplacian untuk arah diagonal 2
+output_diagonal_2 = conv2(gambar, kernel_diagonal_2, 'same');
+% Gabungkan hasil dari semua arah
+output = sqrt(output_horizontal.^2 + output_vertical.^2 + output_diagonal_1.^2 + output_diagonal_2.^2);
+% Tampilkan gambar asli dan hasil
+figure;
+subplot(1, 2, 1),
+imshow(uint8(gambar)),
+title('Sebelum ');
+subplot(1, 2, 2),
+imshow(uint8(output)),
+title('Sesudah');

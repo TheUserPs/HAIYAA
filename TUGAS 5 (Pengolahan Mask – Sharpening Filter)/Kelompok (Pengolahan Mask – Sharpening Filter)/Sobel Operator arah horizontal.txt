@@ -1,0 +1,26 @@
+% Input gambar
+gambar = imread('citramentah4.png');
+% Konversi ke grayscale
+if size(gambar, 3) == 3
+gambar = rgb2gray(gambar);
+end
+% Konversi citra ke tipe double
+gambar = double(gambar);
+% Tentukan kernel Sobel untuk arah horizontal
+kernel_horizontal = [-1, -2, -1; 0, 0, 0; 1, 2, 1];
+% Inisialisasi matriks hasil
+output_horizontal = zeros(size(gambar));
+% Terapkan filter Sobel untuk arah horizontal
+for i = 2:size(gambar, 1)-1
+for j = 2:size(gambar, 2)-1
+output_horizontal(i, j) = sum(sum(gambar(i-1:i+1, j-1:j+1) .* kernel_horizontal));
+end
+end
+% Tampilkan gambar asli dan hasil
+figure;
+subplot(1, 2, 1),
+imshow(uint8(gambar)),
+title('Sebelum');
+subplot(1, 2, 2),
+imshow(uint8(output_horizontal)),
+title('Sesudah');

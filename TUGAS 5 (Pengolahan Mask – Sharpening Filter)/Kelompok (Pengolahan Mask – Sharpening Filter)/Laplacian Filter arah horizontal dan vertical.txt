@@ -1,0 +1,36 @@
+% Input Gambar
+gambar = imread('citramentah2.png');
+% Konversi ke grayscale
+if size(gambar, 3) == 3
+gambar = rgb2gray(gambar);
+end
+% Konversi citra ke tipe double
+gambar = double(gambar);
+% Kernel Laplacian untuk arah horizontal dan vertikal
+kernel_horizontal = [-1, -2, -1; 0, 0, 0; 1, 2, 1];
+kernel_vertical = [-1, 0, 1; -2, 0, 2; -1, 0, 1];
+% Inisialisasi matriks
+output_horizontal = zeros(size(gambar));
+output_vertical = zeros(size(gambar));
+% Filter Laplacian untuk arah horizontal
+for i = 2:size(gambar, 1)-1
+for j = 2:size(gambar, 2)-1
+output_horizontal(i, j) = sum(sum(gambar(i-1:i+1, j-1:j+1) .* kernel_horizontal));
+end
+end
+% Filter Laplacian untuk arah vertikal
+for i = 2:size(gambar, 1)-1
+for j = 2:size(gambar, 2)-1
+output_vertical(i, j) = sum(sum(gambar(i-1:i+1, j-1:j+1) .* kernel_vertical));
+end
+end
+% Gabungkan hasil dari filter horizontal dan vertikal
+output = sqrt(output_horizontal.^2 + output_vertical.^2);
+% Tampilkan gambar asli dan hasil
+figure;
+subplot(1, 2, 1),
+imshow(uint8(gambar)),
+title('Sebelum');
+subplot(1, 2, 2),
+imshow(uint8(output)),
+title('Sesudah');

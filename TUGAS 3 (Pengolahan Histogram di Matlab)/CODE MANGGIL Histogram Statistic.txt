@@ -1,0 +1,10 @@
+% gambar yang akan di proses
+citra = imread('citramentah1.png');
+%parameter
+k0 = 0.9;
+k1 = 1.6;
+k2 = 2.2;
+E = 40; %batas E yang sesuai
+L = 170; %batas L yang sesuai
+% Memanggil Fungsi
+HistogramStat(citra,k0,k1,k2,E,L);

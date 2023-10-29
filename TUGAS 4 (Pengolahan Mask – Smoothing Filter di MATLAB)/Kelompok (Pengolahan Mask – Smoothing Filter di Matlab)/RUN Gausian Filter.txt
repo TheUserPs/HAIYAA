@@ -1,0 +1,8 @@
+%input Gambar
+I = imread('citramentah3.png');
+%Sigma 1.5
+sigma = 3; J = gaussianFilter(double(I), sigma);
+% Menampilkan citra asli dan hasil filter Gaussian
+figure;
+subplot(1,2,1), imshow(I), title('Sebelum');
+subplot(1,2,2), imshow(uint8(J)), title('Sesudah');

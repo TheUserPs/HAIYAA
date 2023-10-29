@@ -1,0 +1,19 @@
+%nama function
+function SoalB = median_filter_3x3(input_matrix)
+ [m, n] = size(input_matrix);
+ SoalB = zeros(m, n);
+
+ % Menambahkan satu baris dan satu kolom di sekitar tepi matrix
+ extmatrix = zeros(m+2, n+2);
+ extmatrix(2:m+1, 2:n+1) = input_matrix;
+
+ for i = 1:m
+ for j = 1:n
+ % Mengambil kotak 3x3
+ box = extmatrix(i:i+2, j:j+2);
+
+ % Menghitung nilai median dari kotak 3x3
+ SoalB(i, j) = median(box(:));
+ end
+ end
+end

@@ -1,0 +1,28 @@
+%input matrix
+input_matrix = [
+ 4 4 6 4 7;
+ 6 7 7 6 2;
+ 2 6 6 4 4;
+ 5 7 6 1 6;
+ 7 7 7 0 3
+ ];
+% kernel Laplacian untuk arah horizontal dan vertikal
+kernel_horizontal = [-1, -2, -1; 0, 0, 0; 1, 2, 1];
+kernel_vertical = [-1, 0, 1; -2, 0, 2; -1, 0, 1];
+% Penerapan filter Laplacian untuk arah horizontal
+output_horizontal = conv2(input_matrix, kernel_horizontal, 'same');
+% Penerapan filter Laplacian untuk arah vertikal
+output_vertical = conv2(input_matrix, kernel_vertical, 'same');
+% hasil Pengabungkan dari filter horizontal dan vertikal
+output = sqrt(output_horizontal.^2 + output_vertical.^2);
+% Output semua hasil
+figure;
+subplot(1, 3, 1);
+imshow(output_horizontal, []);
+title('horizontal');
+subplot(1, 3, 2);
+imshow(output_vertical, []);
+title('vertical');
+subplot(1, 3, 3);
+imshow(output, []);
+title('output');

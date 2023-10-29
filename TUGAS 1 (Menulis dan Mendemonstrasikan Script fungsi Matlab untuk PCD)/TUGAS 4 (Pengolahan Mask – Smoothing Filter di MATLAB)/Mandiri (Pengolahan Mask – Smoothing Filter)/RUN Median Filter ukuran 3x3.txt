@@ -1,0 +1,18 @@
+% Mendefinisikan matriks
+matrix = [
+5 2 1 2 2;
+2 5 0 2 3;
+2 5 0 2 0;
+4 3 5 2 2;
+4 1 1 4 3
+];
+% Memanggil fungsi median filter
+SoalB = median_filter_3x3(matrix);
+% Tampilkan matriks asli dan hasil filtering
+figure;
+subplot(1, 2, 1);
+imshow(matrix, []);
+title('Sebelum');
+subplot(1, 2, 2);
+imshow(SoalB, []);
+title('Sesudah');

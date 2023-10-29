@@ -1,0 +1,9 @@
+function L=log(gbr,c) %Deklarasi nama fungsi
+L1=c*log(double(gbr)+1); %rumus
+maks=max(max(L1)); %untuk menghasilkan nilai maximum
+mins=min(min(L1)); %untuk menghasilkan nilai minimum
+range=maks-mins;
+L2=(L1-mins)./range; %Normalisasi untuk mengubah skala data.
+L=255*L2;
+L=uint8(L);
+imshow(L); %menampilkan gambar

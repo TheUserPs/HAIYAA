@@ -1,0 +1,13 @@
+I = imread("citramentah3.png");
+[Isub, rect] = imcrop(I);
+rbb = round(rect(2));
+rba = round(rect(2) + rect(4));
+cbb = round(rect(1));
+cba = round(rect(1) + rect(3));
+x = Hist_Equalization(Isub); % Memanggilan fungsi Hist_Equalization
+G = I;
+G(rbb:rba, cbb:cba, :) = x; % Memasukkan hasil equalization ke dalam G
+figure, imshow(G); % Menampilkan citra G yang sudah diubah
+
+
+%HARUS ADA FUNCTION HISTOGRAM EQUALIZATION YA

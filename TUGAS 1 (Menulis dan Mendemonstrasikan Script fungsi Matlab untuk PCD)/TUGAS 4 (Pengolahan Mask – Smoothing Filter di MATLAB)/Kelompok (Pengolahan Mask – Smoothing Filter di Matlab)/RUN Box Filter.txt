@@ -1,0 +1,9 @@
+I = imread('citramentah3.png');
+radius = 2; %radius = 2
+J = boxFilter(I, radius);
+% Menampilkan citra asli dan hasil filter kotak
+figure;
+subplot(1,2,1),
+imshow(I), title('Sebelum');
+subplot(1,2,2),
+imshow(uint8(J)), title('Sesudah');

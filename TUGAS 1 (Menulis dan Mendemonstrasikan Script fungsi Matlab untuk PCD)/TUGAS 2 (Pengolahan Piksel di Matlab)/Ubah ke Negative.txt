@@ -1,0 +1,4 @@
+function neg = gambarNeg(gbr) %nama fungsi
+neg=255-double(gbr); %rumus
+neg=uint8(neg); %rumus
+figure,imshow(neg); %menampilkan gambar

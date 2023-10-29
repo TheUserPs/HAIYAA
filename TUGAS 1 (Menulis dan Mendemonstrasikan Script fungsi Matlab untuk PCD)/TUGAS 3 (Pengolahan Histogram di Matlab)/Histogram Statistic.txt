@@ -1,0 +1,23 @@
+function HistogramStat(citra, k0, k1, k2, E, L)
+% Konversi gambar ke grayscale
+if size(citra, 3) == 3
+citra = rgb2gray(citra);
+end
+[rows, cols] = size(citra);
+Upgrade = zeros(rows, cols);
+for x = 1:rows
+for y = 1:cols
+if citra(x, y) < E
+Upgrade(x, y) = k0 * citra(x, y);
+elseif citra(x, y) >= E && citra(x, y) < L
+Upgrade(x, y) = k1 * citra(x, y);
+else
+Upgrade(x, y) = k2 * citra(x, y);
+end
+end
+end
+% Menampilkan gambar
+figure;
+subplot(1, 2, 1), imshow(citra), title('Sebelum');
+subplot(1, 2, 2), imshow(Upgrade, []), title('Setelah');
+end

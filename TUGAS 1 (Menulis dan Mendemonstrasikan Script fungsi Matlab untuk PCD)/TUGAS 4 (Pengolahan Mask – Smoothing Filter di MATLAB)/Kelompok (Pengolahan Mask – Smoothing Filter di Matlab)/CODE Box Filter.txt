@@ -1,0 +1,18 @@
+%nama function serta input (gambar, radius)
+function A = boxFilter(gambar , radius)
+[m, n] = size(gambar);
+A = zeros(m, n);
+for i = 1:m
+for j = 1:n
+% Menentukan batas kotak
+top = max(1, i - radius);
+bottom = min(m, i + radius);
+left = max(1, j - radius);
+right = min(n, j + radius);
+% Mengambil kotak piksel
+window = gambar(top:bottom, left:right);
+% Menghitung rata-rata dan memasukkannya ke outputImage
+A(i, j) = mean(window(:));
+end
+end
+end
